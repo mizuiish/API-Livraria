@@ -1,4 +1,5 @@
-﻿using Chapter.Repositories;
+﻿using Chapter.Models;
+using Chapter.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,8 +25,65 @@ namespace Chapter.Controllers
                 return Ok(_livroRepository.Listar());
             }
             catch (Exception e)
+            {                
+                throw new Exception(e.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult BuscarPorId(int id)
+        {
+            try
             {
-                //para caso der um erro, ele vai voltar a mensagem do que foi o erro
+                return Ok(_livroRepository.buscarPorId(id));
+            }
+            catch (Exception e)
+            {                
+                throw new Exception(e.Message);
+            }
+        }
+
+        [HttpPost]
+       public IActionResult Cadastrar(Livro L)
+        {
+            try
+            {
+                _livroRepository.Cadastrar(L);
+
+                return StatusCode(201);
+            }
+            catch (Exception e)
+            {                
+                throw new Exception(e.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
+        {
+            try
+            {
+                _livroRepository.Deletar(id);
+
+                return Ok("O livro foi removido com sucesso.");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Alterar(int id, Livro L)
+        {
+            try
+            {
+                _livroRepository.Alterar(id, L);
+                return StatusCode(204);
+
+            }
+            catch (Exception e)
+            {
                 throw new Exception(e.Message);
             }
         }
