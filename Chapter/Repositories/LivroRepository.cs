@@ -44,7 +44,7 @@ namespace Chapter.Repositories
             if (livroBuscado != null)
             {
                 livroBuscado.Titulo = L.Titulo;
-                livroBuscado.QuantidadedePaginas = L.QuantidadedePaginas;
+                livroBuscado.QuantidadePaginas = L.QuantidadePaginas;
                 livroBuscado.Disponivel = L.Disponivel;
 
                 _context.Livros.Update(livroBuscado);
