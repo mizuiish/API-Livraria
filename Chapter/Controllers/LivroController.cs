@@ -1,5 +1,6 @@
 ﻿using Chapter.Models;
 using Chapter.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace Chapter.Controllers
     [Produces("application/json")] //ira devolver o arquivo no formato json
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LivroController : ControllerBase
     {
         private readonly LivroRepository _livroRepository;
@@ -42,7 +44,7 @@ namespace Chapter.Controllers
                 throw new Exception(e.Message);
             }
         }
-
+        [Authorize(Roles = "1")]
         [HttpPost]
        public IActionResult Cadastrar(Livro L)
         {

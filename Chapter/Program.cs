@@ -1,6 +1,7 @@
 using Chapter.Contexts;
 using Chapter.Interfaces;
 using Chapter.Repositories;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,25 @@ builder.Services.AddCors(options =>
         .AllowAnyMethod();
 
     });
+});
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultChallengeScheme = "JwtBearer";
+    options.DefaultAuthenticateScheme = "JwtBearer";
+}).AddJwtBearer("JwtBearer", options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateAudience = true,
+        ValidateIssuer = true,
+        ValidateLifetime = true,
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("chapter-chaver-autenticacao")),
+        //copiar a string do token que foi criado na classe LoginControllers na var chave
+        ClockSkew = TimeSpan.FromMinutes(60),
+        ValidAudience = "chapter.webapi",
+        ValidIssuer = "chapter.webapi"
+    };
 });
 
 builder.Services.AddScoped<SqlContext, SqlContext>();
@@ -44,6 +64,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("CorsPolicy");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

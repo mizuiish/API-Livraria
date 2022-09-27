@@ -57,3 +57,4 @@ C:\Users\nicol\Desktop\atividades senai\API\Chapter\Chapter\obj\Debug\net6.0\ref
 C:\Users\nicol\Desktop\atividades senai\API\Chapter\Chapter\obj\Debug\net6.0\Chapter.pdb
 C:\Users\nicol\Desktop\atividades senai\API\Chapter\Chapter\obj\Debug\net6.0\Chapter.genruntimeconfig.cache
 C:\Users\nicol\Desktop\atividades senai\API\Chapter\Chapter\obj\Debug\net6.0\ref\Chapter.dll
+C:\Users\nicol\Desktop\atividades senai\API\Chapter\Chapter\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
