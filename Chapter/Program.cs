@@ -34,7 +34,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateIssuer = true,
         ValidateLifetime = true,
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("chapter-chaver-autenticacao")),
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("chapter-chave-autenticacao")),
         //copiar a string do token que foi criado na classe LoginControllers na var chave
         ClockSkew = TimeSpan.FromMinutes(60),
         ValidAudience = "chapter.webapi",
